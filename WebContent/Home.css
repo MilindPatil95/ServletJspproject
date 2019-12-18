@@ -1,0 +1,9 @@
+body
+{
+	margin:auto;
+	width:50%;
+	padding: 25px 50px 75px 100px;
+	text-color: #8D301B;
+	dispalay:flex;
+	flex-direction:column;
+}
