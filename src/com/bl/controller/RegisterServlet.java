@@ -13,12 +13,7 @@ import com.bl.repository.DBConnection;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet 
-{	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+{		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{  
 		System.out.println("in servlet");
@@ -26,10 +21,10 @@ public class RegisterServlet extends HttpServlet
 	    name=request.getParameter("username");
 	    email=request.getParameter("emailid");
 	    password=request.getParameter("upass");
-	  
 	      DBConnection db=new DBConnection();
 	      Connection connection=db.getConnection();
-	      try {
+	      try 
+	      {
 	      PreparedStatement st= connection.prepareStatement("insert into Registration values('0',?,?,?)");
 	      st.setString(1, name); 
 	      st.setString(2, email);
@@ -42,6 +37,7 @@ public class RegisterServlet extends HttpServlet
 	      {
 	    	  System.out.println(e);
 	      }
+	      
 	      
 	    		  
 	}

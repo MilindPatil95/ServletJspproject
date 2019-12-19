@@ -11,7 +11,9 @@ function validation()
 {      var name =document.getElementById("name").value;
 	   var email= document.getElementById("emailid").value;
 	   var pass= document.getElementById("password").value;
-	   var status=isNameValidate(name);	   
+	   var status=isNameValidate(name);	
+	  
+	   
 	   if(status)
 	   {
 		 var isEmail= isEmailValidate(email)  
@@ -31,7 +33,7 @@ function validation()
 		  {
 		 	  return false;
  		 }
-	 } 	   
+	 } else return false;
 	   
 	    function isNameValidate(name)
 	    {
@@ -57,18 +59,21 @@ function validation()
 		    	}
 	   }
 	   
-	   function isPasswordValidate(pass)
+	   function isPasswordValidate(pass,msg)
 	   {
-		   if(pass=='')
+		   if(pass.length<3)
 			{
+			   alert("password length should be greater than 3");
 			   document.getElementById("password").innerHTML="invalid password";	
 			   return false;
 			}
 		   else
 		   {
-			     return true;
+			    return true;
 		   }
 	   }
+   
+	   
 }
  </script>
  
@@ -79,8 +84,8 @@ function validation()
    width:180px;
    height:30px;
    padding-bottom:30px;
- 
-   margin-top:30px;
+    margin-top:30px;
+
    margin-bottom:50px;
 }
 .div{

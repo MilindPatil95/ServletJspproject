@@ -13,17 +13,35 @@
 	    }
    }
  </script>
+ 
+ <style>
+    .c1
+    {
+       border:solid;
+        height:50px;
+        width:300px;
+        
+    .div
+    {
+          border:solid;
+          align:center;  
+          margin-left:20px;
+          margin-right:20px;
+    }    
+    }
+ </style>
 
 </head>
 <body>
 <form action="PasswordChangeServlet" method="post" onsubmit="return validation()">
 	<div align="center" >
 		<div class ="c1">
-			EmaiID :<input type="text" placeholder="Enter Email id" id="emailid" name="email">
-			<span id="email"></span>
+			EmaiID :<input type="text" placeholder="Enter Email id" id="emailid" name="email"><br>
+			<span id="email" style="color:red"></span>
 		</div >
 		<div class ="c1"> 
-		   new Password:<input type="password" placeholder="Enter pssword" name="pass">
+		   new Password:<input type="password" placeholder="Enter pssword" name="pass" ><br>
+		   
 		</div>
 		
 		
