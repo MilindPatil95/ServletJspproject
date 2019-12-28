@@ -6,11 +6,43 @@
    function validation()
    {
 	   var email= document.getElementById("emailid").value;
-	   if(email=="")
-		{
-		   document.getElementById("email").innerHTML="invalid emailid";
-		   return false;
+	   var pass=document.getElementById("passwrd").value;
+	   var emailid=isEmailValidate(email);
+	   if(emailid)
+		{  var password=isPassValid();
+		    if(password)
+		      {  
+		    	 return true;      
+		      }
+		      return false;
 	    }
+	   else { return false };
+	
+	   
+	   function isEmailValidate()
+	   {
+		    if(email=='')
+		    {  alert("plz fill email field");
+		    	document.getElementById("email").innerHTML="invalid emailid";
+		    	return false;
+		    }
+		    else
+		    	{
+		    	 return true;
+		    	}
+	   }
+	   
+	   function isPassValid()
+	   	 {
+	    	     if(pass.length<3)
+	    	     { 
+	    	    	 alert("please Enter the password length should be Greater than three");
+	    	        return false;
+	    	     }
+	    	     else
+	    	    	 return true;
+	   	 }
+	 
    }
  </script>
  
@@ -40,13 +72,13 @@
 			<span id="email" style="color:red"></span>
 		</div >
 		<div class ="c1"> 
-		   new Password:<input type="password" placeholder="Enter pssword" name="pass" ><br>
+		   new Password:<input type="password" placeholder="Enter pssword" name="pass"  id="passwrd"><br>
 		   
 		</div>
 		
 		
 		<div></div>
-		<button type="submit" style="background-color:light-blue" class ="c1"><p style="color:red">Login</p></button>
+		<button type="submit" style="background-color:light-blue;" class ="c1"><p style="color:red" >Login</p></button>
 	</div>
 </form>
 </body>

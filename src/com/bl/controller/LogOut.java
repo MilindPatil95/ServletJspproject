@@ -20,7 +20,14 @@ public class LogOut extends HttpServlet {
 		
 	  HttpSession session= request.getSession(false);
 	  session.invalidate();
-	  response.sendRedirect("LogOut.jsp");
+		response.setContentType("text/html"); 
+		
+	  PrintWriter pw= response.getWriter();     
+	  
+	  pw.print("<form action='LogOut.jsp'>");          //after log out go for home page 
+	  pw.print("<button>Go to Home</button>");
+	  pw.print("</form>");
+	  
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.bl.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
@@ -15,27 +16,29 @@ import com.bl.repository.DBConnection;
 public class RegisterServlet extends HttpServlet 
 {		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{  
-		System.out.println("in servlet");
+	{
 		String name=null,email=null,password=null;
-	    name=request.getParameter("username");
-	    email=request.getParameter("emailid");
+	    name=request.getParameter("username");   
+	    email=request.getParameter("emailid");                    //get data from user
 	    password=request.getParameter("upass");
+	    System.out.println("username"+name);                     // get DB connection 
 	      DBConnection db=new DBConnection();
 	      Connection connection=db.getConnection();
 	      try 
 	      {
 	      PreparedStatement st= connection.prepareStatement("insert into Registration values('0',?,?,?)");
 	      st.setString(1, name); 
-	      st.setString(2, email);
+	      st.setString(2, email);                            
 	      st.setString(3, password);
-	      st.execute();
-	      System.out.println(" data inserted");
-	      response.sendRedirect("Login.jsp");
+	      st.execute();                                       //insert record  
+	      response.sendRedirect("Login.jsp");                 //go for login
+	        
+	      
 	      }
 	      catch(Exception e)
 	      {
-	    	  System.out.println(e);
+	    	  
+	    	  System.out.println(e);							//handle exception
 	      }
 	      
 	      

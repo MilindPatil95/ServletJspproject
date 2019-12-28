@@ -1,11 +1,13 @@
 package com.bl.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +23,10 @@ public class PasswordChangeServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{     Statement st=null;
 	      ResultSet rs=null;
-	       DBConnection db=new DBConnection();
+	      PreparedStatement pst=null;
+	       DBConnection db=new DBConnection();                         // get connection object
 	          Connection con =db.getConnection();
-	          String email= request.getParameter("email");
-	          System.out.println(email);
+	          String email= request.getParameter("email");	          //get data from user
 	           String pass= request.getParameter("pass");
 	          try 
 	          {
@@ -32,18 +34,31 @@ public class PasswordChangeServlet extends HttpServlet
 	                 rs= st.executeQuery("select * from  Registration where email_ID='"+email+"'");
 	        	if(rs.next())
 	        	{
-	        		System.out.println(rs.getString("user_password"));
-	        		st.executeQuery("update Registration set user_password="+pass+"where email_ID="+email);
-	        		response.sendRedirect("Home.jsp");
+	        		pst=con.prepareStatement("update Registration set user_password=? where email_ID=?");
+	                pst.setString(1,pass);
+	                pst.setString(2,email);
+	                pst.execute();	 
+	               
+	                PrintWriter out = response.getWriter();               //change password 
+	    			response.setContentType("text/html");
+	    			out.println("<script type=\"text/javascript\">");
+	    			out.println("alert('   your password change successfully...');");
+	    			out.println("location='ChangePassword.jsp';");
+	    			out.println("</script>");
 	        	}
 	        	else
-	        	{
-	        		response.sendRedirect("Registration.jsp");
+	        	{   
+	        		PrintWriter out = response.getWriter();                //go for registration
+	    			response.setContentType("text/html");
+	    			out.println("<script type=\"text/javascript\">");
+	    			out.println("alert('    you are not register user');");
+	    			out.println("location='Registration.jsp';");
+	    			out.println("</script>");
 	        	}       	  
 	          }
 	          catch(Exception e)
 	          {
-	        	  System.out.println("");
+	        	  System.out.println(e);                                  //handle exception
 	          }
 	}
 

@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="txt/css" href="Home.css">
 <script>
    function validation()
-   { 
+   {  
 	  var name=document.getElementById("name").value;  
 	  var email=document.getElementById("email").value;	  
 	  var password=document.getElementById("password").value;	  
@@ -24,7 +24,7 @@
    				 {    				   
    			            var  isMatch = isMatchPass();
    			             if(isMatch)
-   				       {
+   				       {  alert("your Registration is successfull you can login now");
    				           return true;
    				       }else { return false };
    				
@@ -80,7 +80,7 @@
   	 {
    	     if(password.length<3)
    	     {  alert("pease Enter the confirm password field");
-   	        //document.getElementById("confpass").innerHTML="please fill this field";	 
+   	       
    	        return false;
    	     }
    	     else
@@ -149,7 +149,7 @@
 		 
      		
 		
-			<input type="submit" value="Register" id="submit" style="background-color:#4CAF50;color:white;width:200px;height:30px; font-size:20px;">
+			<button type="submit" value="Register" id="submit" style="background-color:#4CAF50;color:white;width:200px;height:30px; font-size:20px;">Registration</button>
 	</div>
 	
 
